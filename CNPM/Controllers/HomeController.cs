@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace CNPM.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, DataContext context):base(context)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(context.Products.ToList());
         }
 
         public IActionResult Privacy()
